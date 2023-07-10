@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 2;
 
-  static const List<Widget> _screen = <Widget>[
+  static List<Widget> _screen = <Widget>[
     MixScreen(),
     SearchScreen(),
     CreateScreen(),
@@ -31,11 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Color(0xFF0B4461),
       appBar: AppBar(
         // leading: ClipOval(
         //     child: Image.network('https://img.favpng.com/13/16/11/cartoon-gold-crown-png-favpng-ejYsiTP5FzZZmRTeQvupQR82u.jpg',height:5,width: 5,)),
-        backgroundColor: Colors.black87,
+        backgroundColor: Color(0xff0E2232),
         actions: [
           IconButton(
               onPressed: () {},
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xff0E2232),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
@@ -74,19 +74,19 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedLabelStyle: TextStyle(color: Colors.grey),
         items: [
           BottomNavigationBarItem(
-              backgroundColor: Colors.black,
+              backgroundColor: Color(0xff0E2232),
               icon: Icon(Icons.dashboard_customize),
               label: 'Mix'),
           BottomNavigationBarItem(
-              backgroundColor: Colors.black,
+              backgroundColor: Color(0xff0E2232),
               icon: Icon(Icons.search),
               label: 'Search'),
           BottomNavigationBarItem(
-              backgroundColor: Colors.black,
+              backgroundColor: Color(0xff0E2232),
               icon: Icon(Icons.add_circle),
               label: 'Create'),
           BottomNavigationBarItem(
-              backgroundColor: Colors.black,
+              backgroundColor: Color(0xff0E2232),
               icon: Icon(Icons.person),
               label: 'Profile'),
         ],

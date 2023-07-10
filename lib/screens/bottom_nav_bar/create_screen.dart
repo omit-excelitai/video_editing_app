@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_editing_app/models/dummy.dart';
-import 'package:video_editing_app/screens/create_project_page.dart';
-
-import '../../components/colors.dart';
+import 'package:video_editing_app/screens/create_project/create_project_page.dart';
 import '../../widgets/project_widget.dart';
 
 class CreateScreen extends StatelessWidget {
@@ -11,7 +9,7 @@ class CreateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Color(0xFF0B4461),
       body: Padding(
         padding: EdgeInsets.all(12),
         child: Column(
