@@ -63,19 +63,22 @@ class _EditScreenState extends State<EditScreen> {
                     ReusableButtonWidget(
                       onTap: () {},
                       iconData: Icons.aspect_ratio_outlined,
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: 4,
                     ),
                     ReusableButtonWidget(
                       onTap: () {},
                       iconData: Icons.settings,
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: 4,
                     ),
                     ReusableButtonWidget(
                       onTap: () {},
                       iconData: Icons.timeline_outlined,
-                    ),SizedBox(
+                    ),
+                    SizedBox(
                       height: 4,
                     ),
                     ReusableButtonWidget(
@@ -97,16 +100,28 @@ class _EditScreenState extends State<EditScreen> {
                     Expanded(
                         flex: 7,
                         child: Row(
-                      children: [
-                        Expanded(flex: 6, child: Container( alignment: Alignment.center, color: Colors.black,child: GestureDetector(
-                            onTap: (){
-
-                            },
-                            child: Icon(Icons.play_arrow_rounded, size: 50, color: Colors.white,)),)),
-                        Expanded(flex: 3, child: Container()),
-                      ],
-                    )),
-                    Expanded(flex: 3, child: Container( color: Colors.blue,)),
+                          children: [
+                            Expanded(
+                                flex: 6,
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  color: Colors.black,
+                                  child: GestureDetector(
+                                      onTap: () {},
+                                      child: Icon(
+                                        Icons.play_arrow_rounded,
+                                        size: 50,
+                                        color: Colors.white,
+                                      )),
+                                )),
+                            Expanded(flex: 3, child: Container()),
+                          ],
+                        )),
+                    Expanded(
+                        flex: 3,
+                        child: Container(
+                          color: Colors.blue,
+                        )),
                   ],
                 ),
               ),
