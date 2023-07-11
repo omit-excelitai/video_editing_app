@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:video_editing_app/screens/create_project/create_project_page.dart';
+
+
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:video_editor/video_editor.dart';
 
 import '../../widgets/custom_edit_button.dart';
 import '../../widgets/reusable_button_widget.dart';
@@ -188,3 +193,6 @@ class _EditScreenState extends State<EditScreen> {
     );
   }
 }
+
+
+
