@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_editing_app/screens/create_project/create_project_page.dart';
 
+import '../../widgets/custom_edit_button.dart';
 import '../../widgets/reusable_button_widget.dart';
 
 class EditScreen extends StatefulWidget {
@@ -114,7 +115,62 @@ class _EditScreenState extends State<EditScreen> {
                                         color: Colors.white,
                                       )),
                                 )),
-                            Expanded(flex: 3, child: Container()),
+                            Expanded(
+                                flex: 3,
+                                child: Container(
+                                  color: Color(0xff0E2232),
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 20),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                              onTap: (){},
+                                              child: Container(
+                                                height: 40,
+                                                width: 40,
+                                                decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xFF0B4461)),
+                                                child: Icon(Icons.save, color: Colors.white,),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      CustomEditButton(),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 20),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            InkWell(
+                                              onTap: (){},
+                                              child: Container(
+                                                height: 40,
+                                                width: 40,
+                                                decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xFF0B4461)),
+                                                child: Icon(Icons.card_giftcard, color: Colors.white,),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: (){},
+                                              child: Container(
+                                                height: 40,
+                                                width: 40,
+                                                decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xFF0B4461)),
+                                                child: Icon(Icons.play_arrow_rounded, color: Colors.white,),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )),
                           ],
                         )),
                     Expanded(
