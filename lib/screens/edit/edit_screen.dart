@@ -147,22 +147,33 @@ class _EditScreenState extends State<EditScreen> {
                       height: 4,
                     ),
                     ReusableButtonWidget(
-                      onTap: () {},
+                      onTap: () {
+                        controller!.rotate90Degrees(RotateDirection.left);
+                      },
                       iconData: Icons.rotate_left_outlined,
                     ),
                     SizedBox(
                       height: 4,
                     ),
                     ReusableButtonWidget(
-                      onTap: () {},
+                      onTap: () {
+                        controller!.rotate90Degrees(RotateDirection.right);
+                      },
                       iconData: Icons.rotate_right_outlined,
                     ),
                     SizedBox(
                       height: 4,
                     ),
                     ReusableButtonWidget(
-                      onTap: () {},
-                      iconData: Icons.aspect_ratio_outlined,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => CropScreen(controller: controller!),
+                          ),
+                        );
+                      },
+                      iconData: Icons.crop,
                     ),
                     SizedBox(
                       height: 4,
@@ -286,9 +297,19 @@ class _EditScreenState extends State<EditScreen> {
                                                 decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                     color: Color(0xFF0B4461)),
-                                                child: Icon(
-                                                  Icons.save,
-                                                  color: Colors.white,
+                                                child: PopupMenuButton(
+                                                  tooltip: 'Open export menu',
+                                                  icon: const Icon(Icons.save, color: Colors.white,),
+                                                  itemBuilder: (context) => [
+                                                    PopupMenuItem(
+                                                      onTap: _exportCover,
+                                                      child: const Text('Export cover'),
+                                                    ),
+                                                    PopupMenuItem(
+                                                      onTap: _exportVideo,
+                                                      child: const Text('Export video'),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -318,7 +339,13 @@ class _EditScreenState extends State<EditScreen> {
                                               ),
                                             ),
                                             InkWell(
-                                              onTap: () {},
+                                              onTap: () {
+                                                controller!.isPlaying
+                                                    ? 0
+                                                    : 1;
+                                                  controller!.video.play;
+
+                                              },
                                               child: Container(
                                                 height: 40,
                                                 width: 40,
