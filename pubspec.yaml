@@ -37,8 +37,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^10.5.0
   helpers: ^1.2.3
-  video_editor: ^2.4.0
-  image_picker: ^1.0.0
+  video_editor: ^3.0.0
+  fraction: ^4.1.4
+  image_picker: ^0.8.9
+  path: ^1.8.2
+  video_player: ^2.6.1
+  ffmpeg_kit_flutter: ^5.1.0
+  video_trimmer: ^2.0.1
 
 
 dev_dependencies:

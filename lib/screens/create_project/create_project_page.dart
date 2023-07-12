@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:video_editing_app/models/ratio_model.dart';
 import 'package:video_editing_app/screens/edit/edit_screen.dart';
+
+import '../test_editing_screen.dart';
 
 class CreateProjectPage extends StatefulWidget {
   const CreateProjectPage({super.key});
@@ -34,7 +39,7 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
               horizontal: 12,
             ),
             child: GestureDetector(
-              onTap: (){},
+              onTap: () {},
               child: Row(
                 children: [
                   Icon(
@@ -80,8 +85,8 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
                     fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   isDense: true,
-                  contentPadding: EdgeInsets.only(
-                      left: 12, right: 12, top: 10, bottom: 10),
+                  contentPadding:
+                      EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
                   hintText: 'Enter Project Name',
                   hintStyle: TextStyle(
                       fontSize: 14,
@@ -162,20 +167,26 @@ class _CreateProjectPageState extends State<CreateProjectPage> {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         child: GestureDetector(
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditScreen()));
+          onTap: () async {
+            //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VideoEditorExample()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => EditScreen(isfromCreateButton: false,)));
           },
           child: Container(
             alignment: Alignment.center,
             width: MediaQuery.of(context).size.width,
             height: 50,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
               color: Color(0xffE4E4E4),
             ),
-            child: Text('Create', style: TextStyle(
-                fontSize: 16,
-                color: Color(0xff0E2232),
-                fontWeight: FontWeight.w500),),
+            child: Text(
+              'Create',
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xff0E2232),
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),

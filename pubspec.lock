@@ -81,11 +81,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-  ffmpeg_kit_flutter_min_gpl:
-    dependency: transitive
+  ffmpeg_kit_flutter:
+    dependency: "direct main"
     description:
-      name: ffmpeg_kit_flutter_min_gpl
-      sha256: ca3dc2330c176c8ef96fb512e7a1a37ab369e15685d2e72a52ec1d50726360a0
+      name: ffmpeg_kit_flutter
+      sha256: f631fbf54e8a62ac36d79475280d7a0b042139ffa6662c88cb6896c71f3f0cfa
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
@@ -176,6 +176,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.5.0"
+  fraction:
+    dependency: "direct main"
+    description:
+      name: fraction
+      sha256: "90865cdf528ffa9858e90c806fde7facf73df2385995b94cd53724434687f13f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.4"
   helpers:
     dependency: "direct main"
     description:
@@ -196,10 +204,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "0.13.6"
   http_parser:
     dependency: transitive
     description:
@@ -212,10 +220,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker
-      sha256: b9603755b35253ccfad4be0762bb74d5e8bf9ff75edebf0ac3beec24fac1c5b5
+      sha256: b6951e25b795d053a6ba03af5f710069c99349de9341af95155d52665cb4607c
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "0.8.9"
   image_picker_android:
     dependency: transitive
     description:
@@ -272,6 +280,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   js:
     dependency: transitive
     description:
@@ -321,7 +337,7 @@ packages:
     source: hosted
     version: "1.0.4"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
@@ -481,12 +497,12 @@ packages:
     dependency: "direct main"
     description:
       name: video_editor
-      sha256: "180e1470e10d5f1b69de8996e282e024e36736c6ece36025ea040e8cdacd798f"
+      sha256: "263be52e052118389f372f055f59c2fda5c7beecfdb706b899d2e05be8740c22"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "3.0.0"
   video_player:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: video_player
       sha256: "3fd106c74da32f336dc7feb65021da9b0207cb3124392935f1552834f7cce822"
@@ -533,14 +549,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.3"
+  video_trimmer:
+    dependency: "direct main"
+    description:
+      name: video_trimmer
+      sha256: "190427d15e4cc3eb394f0528e1bc60d9d4339010fa7919cb55cb0c62e917403e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   win32:
     dependency: transitive
     description:
       name: win32
-      sha256: dfdf0136e0aa7a1b474ea133e67cb0154a0acd2599c4f3ada3b49d38d38793ee
+      sha256: "5a751eddf9db89b3e5f9d50c20ab8612296e4e8db69009788d6c8b060a84191c"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.5"
+    version: "4.1.4"
   xdg_directories:
     dependency: transitive
     description:
