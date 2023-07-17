@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_editing_app/models/ratio_model.dart';
 import 'package:video_editing_app/screens/edit/edit_screen.dart';
 
-import '../test_editing_screen.dart';
+import '../edit/test_editing_screen.dart';
 
 class CreateProjectPage extends StatefulWidget {
   const CreateProjectPage({super.key});

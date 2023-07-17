@@ -5,7 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../screens/edit/edit_screen.dart';
 import '../screens/pick_video/pick_video_screen.dart';
-import '../screens/test_editing_screen.dart';
+import '../screens/edit/test_editing_screen.dart';
 
 class CustomEditButton extends StatefulWidget {
   const CustomEditButton({super.key});

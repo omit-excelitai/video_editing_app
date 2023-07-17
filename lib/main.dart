@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:video_editing_app/screens/main_screen.dart';
+import 'package:video_editing_app/screens/home/main_screen.dart';
 import 'package:video_editor/video_editor.dart';
 
 File? filePath;

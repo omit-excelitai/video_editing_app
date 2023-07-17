@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:helpers/helpers.dart';
@@ -9,7 +10,7 @@ import '../../widgets/custom_edit_button.dart';
 import '../../widgets/export_result.dart';
 import '../../widgets/reusable_button_widget.dart';
 import '../crop/crop_screen.dart';
-import '../export_service.dart';
+import '../export/export_service.dart';
 
 class EditScreen extends StatefulWidget {
   EditScreen({super.key, this.isfromCreateButton});
@@ -21,9 +22,12 @@ class EditScreen extends StatefulWidget {
 }
 
 class _EditScreenState extends State<EditScreen> {
-  final double height = 55;
+  final double height = 40;
   final _exportingProgress = ValueNotifier<double>(0.0);
   final _isExporting = ValueNotifier<bool>(false);
+  AudioPlayer audioPlayer = AudioPlayer();
+  bool isPlaying = false;
+  Source source = AssetSource('audios/audio.mp3');
 
   @override
   void initState() {
@@ -33,11 +37,24 @@ class _EditScreenState extends State<EditScreen> {
     ]);
     super.initState();
 
+    audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
+      if (state == PlayerState.playing) {
+        setState(() {
+          isPlaying = true;
+        });
+      } else if (state == PlayerState.paused ||
+          state == PlayerState.completed) {
+        setState(() {
+          isPlaying = false;
+        });
+      }
+    });
+
     if (widget.isfromCreateButton!) {
       controller = VideoEditorController.file(
         filePath!,
         minDuration: const Duration(seconds: 1),
-        maxDuration: const Duration(seconds: 30),
+        maxDuration: const Duration(seconds: 10),
       );
       controller!
           .initialize(aspectRatio: 9 / 16)
@@ -56,6 +73,25 @@ class _EditScreenState extends State<EditScreen> {
           duration: const Duration(seconds: 1),
         ),
       );
+
+  /// For Play Music
+  playMusic() async {
+    audioPlayer.play(
+      source,
+      position: Duration(milliseconds: 2500),
+      mode: PlayerMode.mediaPlayer,
+    );
+  }
+
+  /// For Pause Audio
+  pauseAudio() async {
+    await audioPlayer.pause();
+  }
+
+  /// For Stop Audio
+  stopAudio() async {
+    await audioPlayer.stop();
+  }
 
   /// For Export Video
   void _exportVideo() async {
@@ -182,6 +218,20 @@ class _EditScreenState extends State<EditScreen> {
                     ),
                     ReusableButtonWidget(
                       onTap: () {},
+                      iconData: Icons.cut_outlined,
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    ReusableButtonWidget(
+                      onTap: () {},
+                      iconData: Icons.video_label_outlined,
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    ReusableButtonWidget(
+                      onTap: () {},
                       iconData: Icons.settings,
                     ),
                     SizedBox(
@@ -280,93 +330,106 @@ class _EditScreenState extends State<EditScreen> {
                                 child: Container(
                                   color: Color(0xff0E2232),
                                   alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {},
-                                              child: Container(
-                                                height: 40,
-                                                width: 40,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Color(0xFF0B4461)),
-                                                child: PopupMenuButton(
-                                                  tooltip: 'Open export menu',
-                                                  icon: const Icon(
-                                                    Icons.save,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: Color(0xFF0B4461)),
+                                                  child: PopupMenuButton(
+                                                    tooltip: 'Open export menu',
+                                                    icon: const Icon(
+                                                      Icons.save,
+                                                      color: Colors.white,
+                                                    ),
+                                                    itemBuilder: (context) => [
+                                                      PopupMenuItem(
+                                                        onTap: _exportCover,
+                                                        child: const Text(
+                                                            'Export cover'),
+                                                      ),
+                                                      PopupMenuItem(
+                                                        onTap: _exportVideo,
+                                                        child: const Text(
+                                                            'Export video'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        CustomEditButton(),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {},
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: Color(0xFF0B4461)),
+                                                  child: Icon(
+                                                    Icons.storefront_outlined,
                                                     color: Colors.white,
                                                   ),
-                                                  itemBuilder: (context) => [
-                                                    PopupMenuItem(
-                                                      onTap: _exportCover,
-                                                      child: const Text(
-                                                          'Export cover'),
-                                                    ),
-                                                    PopupMenuItem(
-                                                      onTap: _exportVideo,
-                                                      child: const Text(
-                                                          'Export video'),
-                                                    ),
-                                                  ],
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              InkWell(
+                                                onTap: () {
+                                                  // controller!.isPlaying ? 0 : 1;
+                                                  // controller!.video.play;
+                                                  if (isPlaying) {
+                                                    pauseAudio();
+                                                  } else {
+                                                    playMusic();
+                                                  }
+                                                },
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: Color(0xFF0B4461)),
+                                                  child: isPlaying
+                                                      ? Icon(
+                                                          Icons.pause,
+                                                          color: Colors.white,
+                                                        )
+                                                      : Icon(
+                                                          Icons.play_arrow,
+                                                          color: Colors.white,
+                                                        ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      CustomEditButton(),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {},
-                                              child: Container(
-                                                height: 40,
-                                                width: 40,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Color(0xFF0B4461)),
-                                                child: Icon(
-                                                  Icons.card_giftcard,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                controller!.isPlaying ? 0 : 1;
-                                                controller!.video.play;
-                                              },
-                                              child: Container(
-                                                height: 40,
-                                                width: 40,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Color(0xFF0B4461)),
-                                                child: Icon(
-                                                  Icons.play_arrow_rounded,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 )),
                           ],
@@ -495,48 +558,51 @@ class _EditScreenState extends State<EditScreen> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: height / 4),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-              Text(
-                formatter(Duration(seconds: pos.toInt())),
-                style: TextStyle(color: Colors.white),
-              ),
-              // const Expanded(child: SizedBox()),
-              // AnimatedOpacity(
-              //   opacity: controller!.isTrimming ? 1 : 0,
-              //   duration: kThemeAnimationDuration,
-              //   child: Row(mainAxisSize: MainAxisSize.min, children: [
-              //     Text(formatter(Duration(seconds: startTime.toInt())),
-              //         style: TextStyle(color: Colors.white)),
-              //     const SizedBox(width: 10),
-              //     Text(formatter(Duration(seconds: endTime.toInt())),
-              //         style: TextStyle(color: Colors.white)),
-              //   ]),
-              // ),
-              OpacityTransition(
-                //duration: Duration(seconds: 10),
-                //visible: controller!.isTrimming,
-                visible: true,
-                child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  Text(formatter(Duration(seconds: startTime.toInt())),
-                      style: TextStyle(color: Colors.white)),
-                  const SizedBox(width: 10),
-                  Text(formatter(Duration(seconds: endTime.toInt())),
-                      style: TextStyle(color: Colors.white)),
+                  Text(
+                    formatter(Duration(seconds: pos.toInt())),
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  // const Expanded(child: SizedBox()),
+                  // AnimatedOpacity(
+                  //   opacity: controller!.isTrimming ? 1 : 0,
+                  //   duration: kThemeAnimationDuration,
+                  //   child: Row(mainAxisSize: MainAxisSize.min, children: [
+                  //     Text(formatter(Duration(seconds: startTime.toInt())),
+                  //         style: TextStyle(color: Colors.white)),
+                  //     const SizedBox(width: 10),
+                  //     Text(formatter(Duration(seconds: endTime.toInt())),
+                  //         style: TextStyle(color: Colors.white)),
+                  //   ]),
+                  // ),
+                  OpacityTransition(
+                    //duration: Duration(seconds: 10),
+                    //visible: controller!.isTrimming,
+                    visible: true,
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Text(formatter(Duration(seconds: startTime.toInt())),
+                          style: TextStyle(color: Colors.white)),
+                      const SizedBox(width: 10),
+                      Text(formatter(Duration(seconds: endTime.toInt())),
+                          style: TextStyle(color: Colors.white)),
+                    ]),
+                  ),
                 ]),
-              ),
-            ]),
           );
         },
       ),
       Container(
         width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.symmetric(vertical: 5, ),
+        margin: EdgeInsets.symmetric(
+          vertical: 5,
+        ),
         child: TrimSlider(
           controller: controller!,
           height: height,
           horizontalMargin: height / 4,
           child: TrimTimeline(
+            textStyle: TextStyle(color: Colors.white),
             controller: controller!,
             padding: const EdgeInsets.only(top: 2),
           ),
